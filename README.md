@@ -1,67 +1,52 @@
 # EcoRural - Sustentabilidade Rural
 
-## Sobre o Projeto
-
-O **EcoRural** e uma aplicacao web que ajuda produtores rurais a avaliar e melhorar a sustentabilidade de suas propriedades. Atraves de um quiz interativo, o sistema calcula um indice de sustentabilidade e fornece recomendacoes personalizadas para cada propriedade.
-
 ## Objetivo
 
-Permitir que produtores rurais brasileiros:
-- Avaliem o nivel de sustentabilidade de suas propriedades
-- Identifiquem areas que precisam de melhorias
-- Recebam recomendacoes praticas e personalizadas
-- Visualizem projecoes de melhoria ao longo do tempo
+Aplicacao web para avaliar e melhorar a sustentabilidade de propriedades rurais brasileiras. O usuario pode cadastrar suas propriedades, responder um quiz sobre praticas sustentaveis e receber um indice de sustentabilidade com recomendacoes personalizadas.
 
 ## Funcionalidades
 
-- **Sistema de Cadastro e Login**: Autenticacao local com armazenamento seguro no navegador
-- **Cadastro de Multiplas Propriedades**: Gerencie varias propriedades rurais em uma unica conta
-- **Quiz de Sustentabilidade**: 15 perguntas em 5 categorias (agua, solo, biodiversidade, energia, praticas agricolas)
-- **Indice de Sustentabilidade**: Pontuacao de 0 a 100 com visualizacao em gauge colorido
-- **Recomendacoes Personalizadas**: Sugestoes baseadas nas areas mais fracas
-- **Simulacao de Futuro**: Projecoes de 1, 3 e 5 anos ao implementar melhorias
+- Cadastro e login de usuarios
+- Cadastro de multiplas propriedades rurais
+- Quiz de sustentabilidade com 15 perguntas em 5 categorias
+- Indice de sustentabilidade visual (gauge)
+- Pontuacao detalhada por categoria
+- Recomendacoes personalizadas
+- Simulacao de evolucao futura
 
 ## Tecnologias Utilizadas
 
-- **HTML5**: Estrutura semantica da aplicacao
-- **CSS3**: Estilizacao responsiva e moderna
-- **JavaScript (Vanilla)**: Logica da aplicacao, sem frameworks ou bibliotecas externas
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
 
-## Estrutura do Projeto
-
-```
-/
-├── index.html    # Estrutura HTML da aplicacao
-├── style.css     # Estilos CSS
-├── script.js     # Logica JavaScript
-└── README.md     # Documentacao
-```
+Nenhuma biblioteca externa, framework ou dependencia foi utilizada.
 
 ## Como Executar
 
-1. Baixe ou clone os arquivos do projeto
-2. Abra o arquivo `index.html` em qualquer navegador moderno
-3. Pronto! Nao e necessario servidor, instalacao ou configuracao adicional
+1. Baixe todos os arquivos do projeto
+2. Mantenha a estrutura de pastas:
+   ```
+   /index.html
+   /style.css
+   /script.js
+   /imagens/logo.svg
+   /README.md
+   ```
+3. Abra o arquivo `index.html` em qualquer navegador moderno
 
-### Hospedagem
-
-O projeto e compativel com hospedagem estatica:
-- **GitHub Pages**: Faca upload dos arquivos para um repositorio e ative o GitHub Pages
-- **Vercel**: Arraste e solte a pasta do projeto no Vercel
-- **Netlify**: Similar ao Vercel, suporta deploy por arrastar e soltar
-- **Qualquer servidor HTTP**: Basta servir os arquivos estaticos
+Nao e necessario instalar nada, executar comandos ou ter servidor local.
 
 ## Compatibilidade
 
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+- Google Chrome
+- Mozilla Firefox
+- Microsoft Edge
+- Safari
+- Opera
 
-## Armazenamento de Dados
+O projeto e responsivo e funciona em dispositivos moveis.
 
-Todos os dados sao armazenados localmente no navegador do usuario atraves do `localStorage`. Nenhum dado e enviado para servidores externos, garantindo privacidade total.
+## Armazenamento
 
-## Licenca
-
-Projeto desenvolvido para fins educacionais.
+Os dados sao salvos no navegador usando localStorage.

@@ -3,241 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Avalie e melhore a sustentabilidade da sua propriedade rural com recomendacoes personalizadas">
+  <meta name="description" content="Avalie e melhore a sustentabilidade da sua propriedade rural">
   <title>EcoRural - Sustentabilidade Rural</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app">
     <!-- Tela de Login -->
-    <div id="auth-screen" class="screen">
+    <section id="tela-auth" class="tela">
       <div class="auth-container">
-        <div class="auth-header">
+        <header class="auth-header">
           <div class="logo">
-            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>
-            </svg>
+            <img src="imagens/logo.svg" alt="EcoRural Logo" class="logo-img">
             <h1>EcoRural</h1>
           </div>
-          <p class="subtitle">Sustentabilidade para o campo brasileiro</p>
-        </div>
+          <p>Sustentabilidade para o campo brasileiro</p>
+        </header>
 
-        <!-- Formulario de Login -->
-        <div id="login-form" class="auth-form">
+        <!-- Login -->
+        <form id="form-login" class="form-card">
           <h2>Entrar</h2>
-          <div class="form-group">
+          <div class="campo">
             <label for="login-email">E-mail</label>
             <input type="email" id="login-email" placeholder="seu@email.com" required>
           </div>
-          <div class="form-group">
-            <label for="login-password">Senha</label>
-            <input type="password" id="login-password" placeholder="Sua senha" required>
+          <div class="campo">
+            <label for="login-senha">Senha</label>
+            <input type="password" id="login-senha" placeholder="Sua senha" required>
           </div>
-          <div id="login-error" class="error-message"></div>
-          <button type="button" id="login-btn" class="btn btn-primary btn-full">Entrar</button>
-          <p class="auth-switch">Nao tem conta? <a href="#" id="show-register">Cadastre-se</a></p>
-        </div>
+          <p id="login-erro" class="erro"></p>
+          <button type="submit" class="btn btn-principal">Entrar</button>
+          <p class="link-troca">Nao tem conta? <a href="#" id="mostrar-cadastro">Cadastre-se</a></p>
+        </form>
 
-        <!-- Formulario de Cadastro -->
-        <div id="register-form" class="auth-form hidden">
+        <!-- Cadastro -->
+        <form id="form-cadastro" class="form-card oculto">
           <h2>Criar Conta</h2>
-          <div class="form-group">
-            <label for="register-name">Nome completo</label>
-            <input type="text" id="register-name" placeholder="Seu nome" required>
+          <div class="campo">
+            <label for="cadastro-nome">Nome completo</label>
+            <input type="text" id="cadastro-nome" placeholder="Seu nome" required>
           </div>
-          <div class="form-group">
-            <label for="register-email">E-mail</label>
-            <input type="email" id="register-email" placeholder="seu@email.com" required>
+          <div class="campo">
+            <label for="cadastro-email">E-mail</label>
+            <input type="email" id="cadastro-email" placeholder="seu@email.com" required>
           </div>
-          <div class="form-group">
-            <label for="register-password">Senha</label>
-            <input type="password" id="register-password" placeholder="Minimo 6 caracteres" required>
+          <div class="campo">
+            <label for="cadastro-senha">Senha</label>
+            <input type="password" id="cadastro-senha" placeholder="Minimo 6 caracteres" required>
           </div>
-          <div class="form-group">
-            <label for="register-confirm">Confirmar senha</label>
-            <input type="password" id="register-confirm" placeholder="Repita a senha" required>
+          <div class="campo">
+            <label for="cadastro-confirmar">Confirmar senha</label>
+            <input type="password" id="cadastro-confirmar" placeholder="Repita a senha" required>
           </div>
-          <div id="register-error" class="error-message"></div>
-          <button type="button" id="register-btn" class="btn btn-primary btn-full">Criar conta</button>
-          <p class="auth-switch">Ja tem conta? <a href="#" id="show-login">Entrar</a></p>
-        </div>
+          <p id="cadastro-erro" class="erro"></p>
+          <button type="submit" class="btn btn-principal">Criar conta</button>
+          <p class="link-troca">Ja tem conta? <a href="#" id="mostrar-login">Entrar</a></p>
+        </form>
       </div>
-    </div>
+    </section>
 
-    <!-- Tela de Nova Propriedade -->
-    <div id="property-screen" class="screen hidden">
-      <div class="property-container">
-        <div class="property-header">
+    <!-- Tela Nova Propriedade -->
+    <section id="tela-propriedade" class="tela oculto">
+      <div class="container-central">
+        <header>
           <h1>Nova Propriedade</h1>
           <p>Cadastre sua propriedade rural para avaliar a sustentabilidade</p>
-        </div>
-        <form id="property-form" class="property-form">
-          <div class="form-group">
-            <label for="property-name">Nome da propriedade</label>
-            <input type="text" id="property-name" placeholder="Ex: Fazenda Esperanca" required>
+        </header>
+        <form id="form-propriedade" class="form-card">
+          <div class="campo">
+            <label for="prop-nome">Nome da propriedade</label>
+            <input type="text" id="prop-nome" placeholder="Ex: Fazenda Esperanca" required>
           </div>
-          <div class="form-group">
-            <label for="property-location">Localizacao</label>
-            <input type="text" id="property-location" placeholder="Ex: Interior de Sao Paulo" required>
+          <div class="campo">
+            <label for="prop-local">Localizacao</label>
+            <input type="text" id="prop-local" placeholder="Ex: Interior de Sao Paulo" required>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="property-size">Tamanho</label>
-              <input type="number" id="property-size" placeholder="50" min="1" required>
+          <div class="campo-duplo">
+            <div class="campo">
+              <label for="prop-tamanho">Tamanho</label>
+              <input type="number" id="prop-tamanho" placeholder="50" min="1" required>
             </div>
-            <div class="form-group">
-              <label for="property-unit">Unidade</label>
-              <select id="property-unit">
+            <div class="campo">
+              <label for="prop-unidade">Unidade</label>
+              <select id="prop-unidade">
                 <option value="hectares">Hectares</option>
                 <option value="alqueires">Alqueires</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label for="property-activity">Atividade principal</label>
-            <select id="property-activity" required>
+          <div class="campo">
+            <label for="prop-atividade">Atividade principal</label>
+            <select id="prop-atividade" required>
               <option value="">Selecione...</option>
               <option value="agricultura">Agricultura</option>
               <option value="pecuaria">Pecuaria</option>
-              <option value="mista">Mista (Agricultura e Pecuaria)</option>
-              <option value="silvicultura">Silvicultura</option>
+              <option value="mista">Mista</option>
               <option value="fruticultura">Fruticultura</option>
               <option value="hortifruti">Hortifruti</option>
             </select>
           </div>
-          <div id="property-error" class="error-message"></div>
-          <button type="submit" class="btn btn-primary btn-full">Cadastrar e Iniciar Quiz</button>
+          <p id="prop-erro" class="erro"></p>
+          <button type="submit" class="btn btn-principal">Cadastrar e Iniciar Quiz</button>
         </form>
       </div>
-    </div>
+    </section>
 
     <!-- Tela do Quiz -->
-    <div id="quiz-screen" class="screen hidden">
+    <section id="tela-quiz" class="tela oculto">
       <div class="quiz-container">
-        <div class="quiz-header">
-          <div class="quiz-progress">
-            <div class="progress-bar">
-              <div id="progress-fill" class="progress-fill"></div>
+        <header class="quiz-header">
+          <div class="progresso">
+            <div class="barra-progresso">
+              <div id="progresso-preenchido" class="barra-preenchida"></div>
             </div>
-            <span id="progress-text">Pergunta 1 de 15</span>
+            <span id="progresso-texto">Pergunta 1 de 15</span>
           </div>
-          <span id="quiz-category" class="quiz-category">Gestao da Agua</span>
-        </div>
-        <div class="quiz-content">
-          <h2 id="quiz-question">Pergunta do quiz aqui</h2>
-          <div id="quiz-options" class="quiz-options">
-            <!-- Opcoes serao inseridas via JS -->
-          </div>
-        </div>
-        <div class="quiz-footer">
-          <button id="quiz-prev" class="btn btn-secondary" disabled>Anterior</button>
-          <button id="quiz-next" class="btn btn-primary" disabled>Proxima</button>
-        </div>
+          <span id="quiz-categoria" class="tag-categoria">Gestao da Agua</span>
+        </header>
+        <main class="quiz-conteudo">
+          <h2 id="quiz-pergunta">Pergunta do quiz</h2>
+          <div id="quiz-opcoes" class="opcoes-lista"></div>
+        </main>
+        <footer class="quiz-footer">
+          <button id="quiz-anterior" class="btn btn-secundario" disabled>Anterior</button>
+          <button id="quiz-proximo" class="btn btn-principal" disabled>Proxima</button>
+        </footer>
       </div>
-    </div>
+    </section>
 
-    <!-- Tela do Dashboard -->
-    <div id="dashboard-screen" class="screen hidden">
+    <!-- Tela Dashboard -->
+    <section id="tela-dashboard" class="tela oculto">
       <header class="dashboard-header">
-        <div class="header-left">
-          <div class="logo-small">
-            <svg class="logo-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>
-            </svg>
-            <span>EcoRural</span>
-          </div>
+        <div class="logo-pequeno">
+          <img src="imagens/logo.svg" alt="EcoRural" class="logo-img-pequena">
+          <span>EcoRural</span>
         </div>
-        <div class="header-right">
-          <span id="user-name">Usuario</span>
-          <button id="logout-btn" class="btn btn-outline btn-small">Sair</button>
+        <div class="header-direita">
+          <span id="nome-usuario">Usuario</span>
+          <button id="btn-sair" class="btn btn-outline btn-pequeno">Sair</button>
         </div>
       </header>
 
       <main class="dashboard-main">
-        <div class="dashboard-content">
-          <!-- Lista de Propriedades -->
-          <section class="properties-section">
-            <div class="section-header">
-              <h2>Minhas Propriedades</h2>
-              <button id="add-property-btn" class="btn btn-primary btn-small">+ Nova Propriedade</button>
-            </div>
-            <div id="properties-list" class="properties-grid">
-              <!-- Cards de propriedades serao inseridos via JS -->
-            </div>
-          </section>
+        <!-- Lista de Propriedades -->
+        <section id="secao-lista" class="secao-propriedades">
+          <div class="secao-header">
+            <h2>Minhas Propriedades</h2>
+            <button id="btn-nova-prop" class="btn btn-principal btn-pequeno">+ Nova Propriedade</button>
+          </div>
+          <div id="lista-propriedades" class="grid-propriedades"></div>
+        </section>
 
-          <!-- Detalhes da Propriedade Selecionada -->
-          <section id="property-details" class="property-details hidden">
-            <div class="details-header">
-              <button id="back-to-list" class="btn btn-outline btn-small">Voltar</button>
-              <h2 id="detail-property-name">Nome da Propriedade</h2>
+        <!-- Detalhes da Propriedade -->
+        <section id="secao-detalhes" class="detalhes-propriedade oculto">
+          <div class="detalhes-header">
+            <button id="btn-voltar" class="btn btn-outline btn-pequeno">Voltar</button>
+            <h2 id="nome-propriedade">Nome da Propriedade</h2>
+          </div>
+
+          <!-- Indice de Sustentabilidade -->
+          <article class="card-indice">
+            <h3>Indice de Sustentabilidade</h3>
+            <div class="gauge-container">
+              <svg id="gauge" class="gauge" viewBox="0 0 200 120">
+                <defs>
+                  <linearGradient id="gradiente-gauge" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#ef4444"/>
+                    <stop offset="50%" style="stop-color:#eab308"/>
+                    <stop offset="100%" style="stop-color:#22c55e"/>
+                  </linearGradient>
+                </defs>
+                <path class="gauge-fundo" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e5e7eb" stroke-width="12" stroke-linecap="round"/>
+                <path id="gauge-valor" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gradiente-gauge)" stroke-width="12" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="251"/>
+                <text id="gauge-numero" x="100" y="85" text-anchor="middle" class="gauge-texto">0</text>
+                <text x="100" y="105" text-anchor="middle" class="gauge-label">pontos</text>
+              </svg>
             </div>
+            <p id="status-sustentabilidade" class="status-texto">Calculando...</p>
+          </article>
 
-            <!-- Indice de Sustentabilidade -->
-            <div class="sustainability-card">
-              <h3>Indice de Sustentabilidade</h3>
-              <div class="gauge-container">
-                <svg id="gauge-svg" class="gauge" viewBox="0 0 200 120">
-                  <defs>
-                    <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" style="stop-color:#ef4444"/>
-                      <stop offset="25%" style="stop-color:#f97316"/>
-                      <stop offset="50%" style="stop-color:#eab308"/>
-                      <stop offset="75%" style="stop-color:#84cc16"/>
-                      <stop offset="100%" style="stop-color:#22c55e"/>
-                    </linearGradient>
-                  </defs>
-                  <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e5e7eb" stroke-width="12" stroke-linecap="round"/>
-                  <path id="gauge-fill" class="gauge-value" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gauge-gradient)" stroke-width="12" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="251"/>
-                  <text id="gauge-text" x="100" y="90" text-anchor="middle" class="gauge-number">0</text>
-                  <text x="100" y="110" text-anchor="middle" class="gauge-label">pontos</text>
-                </svg>
-              </div>
-              <p id="sustainability-status" class="sustainability-status">Calculando...</p>
+          <!-- Pontuacao por Categoria -->
+          <article class="card-categorias">
+            <h3>Pontuacao por Categoria</h3>
+            <div id="lista-categorias" class="categorias-lista"></div>
+          </article>
+
+          <!-- Abas -->
+          <div class="abas-container">
+            <nav class="abas-nav">
+              <button class="aba-btn ativa" data-aba="recomendacoes">Recomendacoes</button>
+              <button class="aba-btn" data-aba="simulacao">Simulacao de Futuro</button>
+            </nav>
+            <div id="aba-recomendacoes" class="aba-conteudo ativa">
+              <div id="lista-recomendacoes" class="recomendacoes-lista"></div>
             </div>
-
-            <!-- Pontuacao por Categoria -->
-            <div class="categories-card">
-              <h3>Pontuacao por Categoria</h3>
-              <div id="categories-list" class="categories-list">
-                <!-- Categorias serao inseridas via JS -->
-              </div>
+            <div id="aba-simulacao" class="aba-conteudo">
+              <p class="simulacao-intro">Veja como sua propriedade pode evoluir implementando as recomendacoes:</p>
+              <div id="cards-simulacao" class="simulacao-grid"></div>
             </div>
+          </div>
 
-            <!-- Abas: Recomendacoes e Simulacao -->
-            <div class="tabs-container">
-              <div class="tabs-header">
-                <button class="tab-btn active" data-tab="recommendations">Recomendacoes</button>
-                <button class="tab-btn" data-tab="simulation">Simulacao de Futuro</button>
-              </div>
-
-              <!-- Tab Recomendacoes -->
-              <div id="tab-recommendations" class="tab-content active">
-                <div id="recommendations-list" class="recommendations-list">
-                  <!-- Recomendacoes serao inseridas via JS -->
-                </div>
-              </div>
-
-              <!-- Tab Simulacao -->
-              <div id="tab-simulation" class="tab-content hidden">
-                <div class="simulation-intro">
-                  <p>Veja como sua propriedade pode evoluir implementando as recomendacoes sugeridas:</p>
-                </div>
-                <div id="simulation-cards" class="simulation-cards">
-                  <!-- Cards de simulacao serao inseridos via JS -->
-                </div>
-              </div>
-            </div>
-
-            <!-- Botoes de Acao -->
-            <div class="detail-actions">
-              <button id="redo-quiz-btn" class="btn btn-secondary">Refazer Quiz</button>
-              <button id="delete-property-btn" class="btn btn-danger">Excluir Propriedade</button>
-            </div>
-          </section>
-        </div>
+          <!-- Acoes -->
+          <div class="acoes-detalhes">
+            <button id="btn-refazer-quiz" class="btn btn-secundario">Refazer Quiz</button>
+            <button id="btn-excluir" class="btn btn-perigo">Excluir Propriedade</button>
+          </div>
+        </section>
       </main>
-    </div>
+    </section>
   </div>
 
   <script src="script.js"></script>

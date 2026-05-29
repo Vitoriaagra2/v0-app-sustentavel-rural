@@ -1,1082 +1,791 @@
 // ===== DADOS DO QUIZ =====
-const quizQuestions = [
-  // Categoria: Agua
-  {
-    id: "agua-1",
-    category: "agua",
-    question: "Como voce gerencia o uso de agua na sua propriedade?",
-    options: [
-      { label: "Nao faco controle", value: 0 },
-      { label: "Controle basico visual", value: 1 },
-      { label: "Medicao parcial do consumo", value: 2 },
-      { label: "Sistema completo de monitoramento", value: 3 },
-    ],
-  },
-  {
-    id: "agua-2",
-    category: "agua",
-    question: "Qual e a situacao das nascentes e cursos de agua na propriedade?",
-    options: [
-      { label: "Sem protecao ou degradadas", value: 0 },
-      { label: "Parcialmente protegidas", value: 1 },
-      { label: "Bem protegidas com vegetacao", value: 2 },
-      { label: "Totalmente preservadas com APP", value: 3 },
-    ],
-  },
-  {
-    id: "agua-3",
-    category: "agua",
-    question: "Voce utiliza sistemas de captacao de agua da chuva?",
-    options: [
-      { label: "Nao utilizo", value: 0 },
-      { label: "Captacao simples para uso domestico", value: 1 },
-      { label: "Sistema para irrigacao parcial", value: 2 },
-      { label: "Sistema integrado completo", value: 3 },
-    ],
-  },
-  // Categoria: Solo
-  {
-    id: "solo-1",
-    category: "solo",
-    question: "Como esta a situacao de erosao na sua propriedade?",
-    options: [
-      { label: "Erosao severa em varias areas", value: 0 },
-      { label: "Erosao moderada em algumas areas", value: 1 },
-      { label: "Erosao leve e controlada", value: 2 },
-      { label: "Sem erosao visivel", value: 3 },
-    ],
-  },
-  {
-    id: "solo-2",
-    category: "solo",
-    question: "Voce pratica rotacao de culturas ou pousio?",
-    options: [
-      { label: "Nao pratico", value: 0 },
-      { label: "Ocasionalmente", value: 1 },
-      { label: "Regularmente", value: 2 },
-      { label: "Sistema planejado de rotacao", value: 3 },
-    ],
-  },
-  {
-    id: "solo-3",
-    category: "solo",
-    question: "Como voce maneja a cobertura do solo?",
-    options: [
-      { label: "Solo exposto na maior parte", value: 0 },
-      { label: "Cobertura parcial", value: 1 },
-      { label: "Cobertura vegetal na maioria", value: 2 },
-      { label: "Plantio direto ou cobertura permanente", value: 3 },
-    ],
-  },
-  // Categoria: Biodiversidade
-  {
-    id: "bio-1",
-    category: "biodiversidade",
-    question: "Qual a situacao da Reserva Legal na propriedade?",
-    options: [
-      { label: "Nao tenho ou esta degradada", value: 0 },
-      { label: "Parcialmente preservada", value: 1 },
-      { label: "Preservada mas isolada", value: 2 },
-      { label: "Preservada e conectada a outras areas", value: 3 },
-    ],
-  },
-  {
-    id: "bio-2",
-    category: "biodiversidade",
-    question: "Voce mantem corredores ecologicos ou areas de vegetacao nativa?",
-    options: [
-      { label: "Nao mantenho", value: 0 },
-      { label: "Algumas areas isoladas", value: 1 },
-      { label: "Corredores parciais", value: 2 },
-      { label: "Sistema integrado de corredores", value: 3 },
-    ],
-  },
-  {
-    id: "bio-3",
-    category: "biodiversidade",
-    question: "Como voce lida com a fauna silvestre?",
-    options: [
-      { label: "Considerada como praga", value: 0 },
-      { label: "Tolerancia passiva", value: 1 },
-      { label: "Protecao basica", value: 2 },
-      { label: "Manejo integrado e protecao ativa", value: 3 },
-    ],
-  },
-  // Categoria: Energia
-  {
-    id: "energia-1",
-    category: "energia",
-    question: "Voce utiliza fontes de energia renovavel?",
-    options: [
-      { label: "Nao utilizo", value: 0 },
-      { label: "Uso parcial (solar para aquecimento)", value: 1 },
-      { label: "Geracao parcial de energia", value: 2 },
-      { label: "Sistema completo de energia renovavel", value: 3 },
-    ],
-  },
-  {
-    id: "energia-2",
-    category: "energia",
-    question: "Como e a eficiencia energetica dos equipamentos?",
-    options: [
-      { label: "Equipamentos antigos e ineficientes", value: 0 },
-      { label: "Alguns equipamentos eficientes", value: 1 },
-      { label: "Maioria eficiente", value: 2 },
-      { label: "Todos eficientes e monitorados", value: 3 },
-    ],
-  },
-  {
-    id: "energia-3",
-    category: "energia",
-    question: "Voce aproveita biomassa ou residuos para energia?",
-    options: [
-      { label: "Nao aproveito", value: 0 },
-      { label: "Queima simples de residuos", value: 1 },
-      { label: "Compostagem ou biodigestor parcial", value: 2 },
-      { label: "Sistema integrado de aproveitamento", value: 3 },
-    ],
-  },
-  // Categoria: Praticas Agricolas
-  {
-    id: "praticas-1",
-    category: "praticas",
-    question: "Como voce utiliza agrotoxicos na propriedade?",
-    options: [
-      { label: "Uso intensivo sem controle", value: 0 },
-      { label: "Uso com algum controle", value: 1 },
-      { label: "Uso minimo e controlado", value: 2 },
-      { label: "Producao organica ou sem agrotoxicos", value: 3 },
-    ],
-  },
-  {
-    id: "praticas-2",
-    category: "praticas",
-    question: "Voce pratica integracao lavoura-pecuaria-floresta (ILPF)?",
-    options: [
-      { label: "Nao pratico", value: 0 },
-      { label: "Integracao parcial (2 componentes)", value: 1 },
-      { label: "ILPF em implementacao", value: 2 },
-      { label: "ILPF consolidado", value: 3 },
-    ],
-  },
-  {
-    id: "praticas-3",
-    category: "praticas",
-    question: "Como voce gerencia os residuos da producao?",
-    options: [
-      { label: "Descarte sem tratamento", value: 0 },
-      { label: "Separacao basica", value: 1 },
-      { label: "Reciclagem e compostagem parcial", value: 2 },
-      { label: "Gestao completa de residuos", value: 3 },
-    ],
-  },
+var perguntas = [
+  { id: "agua-1", categoria: "agua", pergunta: "Como voce gerencia o uso de agua na propriedade?", opcoes: [
+    { texto: "Nao faco controle", valor: 0 },
+    { texto: "Controle basico visual", valor: 1 },
+    { texto: "Medicao parcial do consumo", valor: 2 },
+    { texto: "Sistema completo de monitoramento", valor: 3 }
+  ]},
+  { id: "agua-2", categoria: "agua", pergunta: "Qual a situacao das nascentes e cursos de agua?", opcoes: [
+    { texto: "Sem protecao ou degradadas", valor: 0 },
+    { texto: "Parcialmente protegidas", valor: 1 },
+    { texto: "Bem protegidas com vegetacao", valor: 2 },
+    { texto: "Totalmente preservadas com APP", valor: 3 }
+  ]},
+  { id: "agua-3", categoria: "agua", pergunta: "Voce utiliza captacao de agua da chuva?", opcoes: [
+    { texto: "Nao utilizo", valor: 0 },
+    { texto: "Captacao simples domestica", valor: 1 },
+    { texto: "Sistema para irrigacao parcial", valor: 2 },
+    { texto: "Sistema integrado completo", valor: 3 }
+  ]},
+  { id: "solo-1", categoria: "solo", pergunta: "Como esta a situacao de erosao na propriedade?", opcoes: [
+    { texto: "Erosao severa em varias areas", valor: 0 },
+    { texto: "Erosao moderada em algumas areas", valor: 1 },
+    { texto: "Erosao leve e controlada", valor: 2 },
+    { texto: "Sem erosao visivel", valor: 3 }
+  ]},
+  { id: "solo-2", categoria: "solo", pergunta: "Voce pratica rotacao de culturas?", opcoes: [
+    { texto: "Nao pratico", valor: 0 },
+    { texto: "Ocasionalmente", valor: 1 },
+    { texto: "Regularmente", valor: 2 },
+    { texto: "Sistema planejado de rotacao", valor: 3 }
+  ]},
+  { id: "solo-3", categoria: "solo", pergunta: "Como voce maneja a cobertura do solo?", opcoes: [
+    { texto: "Solo exposto na maior parte", valor: 0 },
+    { texto: "Cobertura parcial", valor: 1 },
+    { texto: "Cobertura vegetal na maioria", valor: 2 },
+    { texto: "Plantio direto ou cobertura permanente", valor: 3 }
+  ]},
+  { id: "bio-1", categoria: "biodiversidade", pergunta: "Qual a situacao da Reserva Legal?", opcoes: [
+    { texto: "Nao tenho ou esta degradada", valor: 0 },
+    { texto: "Parcialmente preservada", valor: 1 },
+    { texto: "Preservada mas isolada", valor: 2 },
+    { texto: "Preservada e conectada", valor: 3 }
+  ]},
+  { id: "bio-2", categoria: "biodiversidade", pergunta: "Voce mantem corredores ecologicos?", opcoes: [
+    { texto: "Nao mantenho", valor: 0 },
+    { texto: "Algumas areas isoladas", valor: 1 },
+    { texto: "Corredores parciais", valor: 2 },
+    { texto: "Sistema integrado de corredores", valor: 3 }
+  ]},
+  { id: "bio-3", categoria: "biodiversidade", pergunta: "Como voce lida com a fauna silvestre?", opcoes: [
+    { texto: "Considerada como praga", valor: 0 },
+    { texto: "Tolerancia passiva", valor: 1 },
+    { texto: "Protecao basica", valor: 2 },
+    { texto: "Manejo integrado e protecao ativa", valor: 3 }
+  ]},
+  { id: "energia-1", categoria: "energia", pergunta: "Voce utiliza fontes de energia renovavel?", opcoes: [
+    { texto: "Nao utilizo", valor: 0 },
+    { texto: "Uso parcial (solar aquecimento)", valor: 1 },
+    { texto: "Geracao parcial de energia", valor: 2 },
+    { texto: "Sistema completo renovavel", valor: 3 }
+  ]},
+  { id: "energia-2", categoria: "energia", pergunta: "Como e a eficiencia dos equipamentos?", opcoes: [
+    { texto: "Equipamentos antigos e ineficientes", valor: 0 },
+    { texto: "Alguns equipamentos eficientes", valor: 1 },
+    { texto: "Maioria eficiente", valor: 2 },
+    { texto: "Todos eficientes e monitorados", valor: 3 }
+  ]},
+  { id: "energia-3", categoria: "energia", pergunta: "Voce aproveita biomassa para energia?", opcoes: [
+    { texto: "Nao aproveito", valor: 0 },
+    { texto: "Queima simples de residuos", valor: 1 },
+    { texto: "Compostagem ou biodigestor parcial", valor: 2 },
+    { texto: "Sistema integrado de aproveitamento", valor: 3 }
+  ]},
+  { id: "praticas-1", categoria: "praticas", pergunta: "Como voce utiliza agrotoxicos?", opcoes: [
+    { texto: "Uso intensivo sem controle", valor: 0 },
+    { texto: "Uso com algum controle", valor: 1 },
+    { texto: "Uso minimo e controlado", valor: 2 },
+    { texto: "Producao organica ou sem agrotoxicos", valor: 3 }
+  ]},
+  { id: "praticas-2", categoria: "praticas", pergunta: "Voce pratica integracao lavoura-pecuaria-floresta?", opcoes: [
+    { texto: "Nao pratico", valor: 0 },
+    { texto: "Integracao parcial", valor: 1 },
+    { texto: "ILPF em implementacao", valor: 2 },
+    { texto: "ILPF consolidado", valor: 3 }
+  ]},
+  { id: "praticas-3", categoria: "praticas", pergunta: "Como voce gerencia os residuos da producao?", opcoes: [
+    { texto: "Descarte sem tratamento", valor: 0 },
+    { texto: "Separacao basica", valor: 1 },
+    { texto: "Reciclagem e compostagem parcial", valor: 2 },
+    { texto: "Gestao completa de residuos", valor: 3 }
+  ]}
 ];
 
-const recommendations = [
-  // Agua
-  {
-    id: "rec-agua-1",
-    category: "agua",
-    title: "Sistema de Captacao de Agua da Chuva",
-    description: "Instale cisternas e sistemas de captacao para reduzir dependencia de outras fontes.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 5.000 - R$ 15.000",
-    timeframe: "2-4 meses",
-    benefits: ["Reducao de custos com agua", "Independencia hidrica", "Reserva para periodos de seca"],
-  },
-  {
-    id: "rec-agua-2",
-    category: "agua",
-    title: "Recuperacao de Nascentes",
-    description: "Cerque e replante vegetacao nativa ao redor das nascentes da propriedade.",
-    impact: "alto",
-    difficulty: "facil",
-    estimatedCost: "R$ 2.000 - R$ 8.000",
-    timeframe: "6-12 meses para estabelecimento",
-    benefits: ["Aumento da vazao", "Melhoria da qualidade da agua", "Cumprimento da legislacao ambiental"],
-  },
-  {
-    id: "rec-agua-3",
-    category: "agua",
-    title: "Irrigacao por Gotejamento",
-    description: "Substitua irrigacao por aspersao por sistemas de gotejamento para maior eficiencia.",
-    impact: "medio",
-    difficulty: "moderado",
-    estimatedCost: "R$ 3.000 - R$ 10.000 por hectare",
-    timeframe: "1-3 meses",
-    benefits: ["Economia de ate 50% de agua", "Menor perda por evaporacao", "Aplicacao precisa de fertilizantes"],
-  },
-  // Solo
-  {
-    id: "rec-solo-1",
-    category: "solo",
-    title: "Curvas de Nivel e Terracos",
-    description: "Construa curvas de nivel para controlar a erosao e reter agua no solo.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 500 - R$ 1.500 por hectare",
-    timeframe: "1-2 meses",
-    benefits: ["Controle de erosao", "Maior retencao de agua", "Aumento da produtividade"],
-  },
-  {
-    id: "rec-solo-2",
-    category: "solo",
-    title: "Plantio Direto",
-    description: "Adote o sistema de plantio direto na palha para protecao do solo.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 200 - R$ 800 por hectare (adaptacao)",
-    timeframe: "1-2 safras para consolidacao",
-    benefits: ["Aumento de materia organica", "Menor compactacao", "Reducao de custos com preparo"],
-  },
-  {
-    id: "rec-solo-3",
-    category: "solo",
-    title: "Adubacao Verde",
-    description: "Utilize plantas de cobertura para melhorar a fertilidade e estrutura do solo.",
-    impact: "medio",
-    difficulty: "facil",
-    estimatedCost: "R$ 150 - R$ 400 por hectare",
-    timeframe: "3-6 meses",
-    benefits: ["Fixacao de nitrogenio", "Aumento de materia organica", "Controle de plantas daninhas"],
-  },
-  // Biodiversidade
-  {
-    id: "rec-bio-1",
-    category: "biodiversidade",
-    title: "Implantacao de Corredores Ecologicos",
-    description: "Conecte fragmentos de vegetacao nativa para permitir o fluxo de fauna.",
-    impact: "alto",
-    difficulty: "dificil",
-    estimatedCost: "R$ 3.000 - R$ 8.000 por hectare",
-    timeframe: "2-5 anos para estabelecimento",
-    benefits: ["Conservacao da biodiversidade", "Controle biologico de pragas", "Polinizacao natural"],
-  },
-  {
-    id: "rec-bio-2",
-    category: "biodiversidade",
-    title: "Recuperacao de Areas Degradadas",
-    description: "Inicie o reflorestamento com especies nativas em areas de Reserva Legal.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 4.000 - R$ 12.000 por hectare",
-    timeframe: "3-10 anos",
-    benefits: ["Regularizacao ambiental", "Sequestro de carbono", "Valorizacao da propriedade"],
-  },
-  {
-    id: "rec-bio-3",
-    category: "biodiversidade",
-    title: "Sistemas Agroflorestais (SAFs)",
-    description: "Combine producao agricola com arvores nativas e frutiferas.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 5.000 - R$ 15.000 por hectare",
-    timeframe: "2-5 anos para producao",
-    benefits: ["Diversificacao de renda", "Resiliencia climatica", "Melhoria do microclima"],
-  },
-  // Energia
-  {
-    id: "rec-energia-1",
-    category: "energia",
-    title: "Sistema Fotovoltaico",
-    description: "Instale paineis solares para geracao de energia eletrica.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 15.000 - R$ 50.000",
-    timeframe: "1-3 meses",
-    benefits: ["Reducao de ate 95% na conta de luz", "Independencia energetica", "Creditos de energia"],
-  },
-  {
-    id: "rec-energia-2",
-    category: "energia",
-    title: "Biodigestor",
-    description: "Transforme dejetos animais em biogas e biofertilizante.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 10.000 - R$ 40.000",
-    timeframe: "2-4 meses",
-    benefits: ["Geracao de energia", "Fertilizante organico", "Tratamento de residuos"],
-  },
-  {
-    id: "rec-energia-3",
-    category: "energia",
-    title: "Aquecedor Solar de Agua",
-    description: "Utilize energia solar para aquecimento de agua nas instalacoes.",
-    impact: "medio",
-    difficulty: "facil",
-    estimatedCost: "R$ 2.000 - R$ 6.000",
-    timeframe: "1-2 semanas",
-    benefits: ["Economia de energia", "Baixa manutencao", "Retorno rapido do investimento"],
-  },
-  // Praticas
-  {
-    id: "rec-praticas-1",
-    category: "praticas",
-    title: "Manejo Integrado de Pragas (MIP)",
-    description: "Adote estrategias de controle biologico e monitoramento de pragas.",
-    impact: "alto",
-    difficulty: "moderado",
-    estimatedCost: "R$ 500 - R$ 2.000 (capacitacao e insumos)",
-    timeframe: "1-2 safras",
-    benefits: ["Reducao de agrotoxicos", "Menor custo de producao", "Alimentos mais saudaveis"],
-  },
-  {
-    id: "rec-praticas-2",
-    category: "praticas",
-    title: "Integracao Lavoura-Pecuaria-Floresta",
-    description: "Implemente sistema ILPF para uso eficiente da terra.",
-    impact: "alto",
-    difficulty: "dificil",
-    estimatedCost: "R$ 3.000 - R$ 10.000 por hectare",
-    timeframe: "3-5 anos para consolidacao",
-    benefits: ["Diversificacao de renda", "Melhoria do solo", "Resiliencia climatica"],
-  },
-  {
-    id: "rec-praticas-3",
-    category: "praticas",
-    title: "Certificacao Organica",
-    description: "Inicie o processo de transicao para producao organica certificada.",
-    impact: "alto",
-    difficulty: "dificil",
-    estimatedCost: "R$ 2.000 - R$ 5.000 (certificacao anual)",
-    timeframe: "2-3 anos de transicao",
-    benefits: ["Precos premium", "Acesso a novos mercados", "Producao mais sustentavel"],
-  },
+var recomendacoes = [
+  { id: "r1", categoria: "agua", titulo: "Sistema de Captacao de Agua da Chuva", descricao: "Instale cisternas para reduzir dependencia de outras fontes.", impacto: "alto", custo: "R$ 5.000 - R$ 15.000", prazo: "2-4 meses" },
+  { id: "r2", categoria: "agua", titulo: "Recuperacao de Nascentes", descricao: "Cerque e replante vegetacao nativa ao redor das nascentes.", impacto: "alto", custo: "R$ 2.000 - R$ 8.000", prazo: "6-12 meses" },
+  { id: "r3", categoria: "solo", titulo: "Curvas de Nivel e Terracos", descricao: "Construa curvas de nivel para controlar erosao.", impacto: "alto", custo: "R$ 500 - R$ 1.500/ha", prazo: "1-2 meses" },
+  { id: "r4", categoria: "solo", titulo: "Plantio Direto", descricao: "Adote o sistema de plantio direto na palha.", impacto: "alto", custo: "R$ 200 - R$ 800/ha", prazo: "1-2 safras" },
+  { id: "r5", categoria: "biodiversidade", titulo: "Corredores Ecologicos", descricao: "Conecte fragmentos de vegetacao nativa.", impacto: "alto", custo: "R$ 3.000 - R$ 8.000/ha", prazo: "2-5 anos" },
+  { id: "r6", categoria: "biodiversidade", titulo: "Sistemas Agroflorestais", descricao: "Combine producao agricola com arvores nativas.", impacto: "alto", custo: "R$ 5.000 - R$ 15.000/ha", prazo: "2-5 anos" },
+  { id: "r7", categoria: "energia", titulo: "Sistema Fotovoltaico", descricao: "Instale paineis solares para geracao de energia.", impacto: "alto", custo: "R$ 15.000 - R$ 50.000", prazo: "1-3 meses" },
+  { id: "r8", categoria: "energia", titulo: "Biodigestor", descricao: "Transforme dejetos animais em biogas.", impacto: "alto", custo: "R$ 10.000 - R$ 40.000", prazo: "2-4 meses" },
+  { id: "r9", categoria: "praticas", titulo: "Manejo Integrado de Pragas", descricao: "Adote estrategias de controle biologico.", impacto: "alto", custo: "R$ 500 - R$ 2.000", prazo: "1-2 safras" },
+  { id: "r10", categoria: "praticas", titulo: "Certificacao Organica", descricao: "Inicie a transicao para producao organica.", impacto: "alto", custo: "R$ 2.000 - R$ 5.000/ano", prazo: "2-3 anos" }
 ];
 
-const categoryLabels = {
+var nomesCategorias = {
   agua: "Gestao da Agua",
   solo: "Conservacao do Solo",
   biodiversidade: "Biodiversidade",
   energia: "Energia",
-  praticas: "Praticas Agricolas",
+  praticas: "Praticas Agricolas"
 };
 
-const categoryIcons = {
+var iconesCategorias = {
   agua: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
   solo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>',
-  biodiversidade: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M16 14v.2A3 3 0 0 1 14.9 20v0H11v0h0a3 3 0 0 1-1-5.8V14a3 3 0 0 1 6 0z"/><path d="M19 10v.2A3 3 0 0 1 17.9 16v0H14v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0z"/><path d="M16 16v6"/></svg>',
+  biodiversidade: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0 0 20 7 7 0 0 0 0-20z"/></svg>',
   energia: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
-  praticas: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>',
+  praticas: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/></svg>'
+};
+
+// ===== ESTADO =====
+var estado = {
+  usuarioAtual: null,
+  propriedadeSelecionada: null,
+  quizPerguntaAtual: 0,
+  quizRespostas: {},
+  quizPropriedadeId: null
 };
 
 // ===== STORAGE =====
-const STORAGE_KEYS = {
-  USERS: "sustentabilidade_users",
-  CURRENT_USER: "sustentabilidade_current_user",
-  PROPERTIES: "sustentabilidade_properties",
-};
-
-function getUsers() {
-  const data = localStorage.getItem(STORAGE_KEYS.USERS);
-  return data ? JSON.parse(data) : [];
+function getUsuarios() {
+  var dados = localStorage.getItem("ecorural_usuarios");
+  return dados ? JSON.parse(dados) : [];
 }
 
-function saveUser(user) {
-  const users = getUsers();
-  const existingIndex = users.findIndex((u) => u.id === user.id);
-  if (existingIndex >= 0) {
-    users[existingIndex] = user;
-  } else {
-    users.push(user);
+function salvarUsuario(usuario) {
+  var usuarios = getUsuarios();
+  var index = -1;
+  for (var i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].id === usuario.id) {
+      index = i;
+      break;
+    }
   }
-  localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
-}
-
-function findUserByEmail(email) {
-  const users = getUsers();
-  return users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-}
-
-function getCurrentUser() {
-  const data = localStorage.getItem(STORAGE_KEYS.CURRENT_USER);
-  return data ? JSON.parse(data) : null;
-}
-
-function setCurrentUser(user) {
-  if (user) {
-    localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(user));
+  if (index >= 0) {
+    usuarios[index] = usuario;
   } else {
-    localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
+    usuarios.push(usuario);
+  }
+  localStorage.setItem("ecorural_usuarios", JSON.stringify(usuarios));
+}
+
+function buscarUsuarioPorEmail(email) {
+  var usuarios = getUsuarios();
+  for (var i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].email.toLowerCase() === email.toLowerCase()) {
+      return usuarios[i];
+    }
+  }
+  return null;
+}
+
+function getUsuarioAtual() {
+  var dados = localStorage.getItem("ecorural_usuario_atual");
+  return dados ? JSON.parse(dados) : null;
+}
+
+function setUsuarioAtual(usuario) {
+  if (usuario) {
+    localStorage.setItem("ecorural_usuario_atual", JSON.stringify(usuario));
+  } else {
+    localStorage.removeItem("ecorural_usuario_atual");
   }
 }
 
-function updateCurrentUser(updates) {
-  const currentUser = getCurrentUser();
-  if (!currentUser) return null;
-  const updatedUser = { ...currentUser, ...updates };
-  saveUser(updatedUser);
-  setCurrentUser(updatedUser);
-  return updatedUser;
-}
-
-function getProperties(userId) {
-  const data = localStorage.getItem(STORAGE_KEYS.PROPERTIES);
-  const properties = data ? JSON.parse(data) : [];
+function getPropriedades(userId) {
+  var dados = localStorage.getItem("ecorural_propriedades");
+  var propriedades = dados ? JSON.parse(dados) : [];
   if (userId) {
-    return properties.filter((p) => p.userId === userId);
+    var filtradas = [];
+    for (var i = 0; i < propriedades.length; i++) {
+      if (propriedades[i].userId === userId) {
+        filtradas.push(propriedades[i]);
+      }
+    }
+    return filtradas;
   }
-  return properties;
+  return propriedades;
 }
 
-function saveProperty(property) {
-  const properties = getProperties();
-  const existingIndex = properties.findIndex((p) => p.id === property.id);
-  if (existingIndex >= 0) {
-    properties[existingIndex] = property;
+function salvarPropriedade(propriedade) {
+  var propriedades = getPropriedades();
+  var index = -1;
+  for (var i = 0; i < propriedades.length; i++) {
+    if (propriedades[i].id === propriedade.id) {
+      index = i;
+      break;
+    }
+  }
+  if (index >= 0) {
+    propriedades[index] = propriedade;
   } else {
-    properties.push(property);
+    propriedades.push(propriedade);
   }
-  localStorage.setItem(STORAGE_KEYS.PROPERTIES, JSON.stringify(properties));
+  localStorage.setItem("ecorural_propriedades", JSON.stringify(propriedades));
 }
 
-function deletePropertyById(propertyId) {
-  const properties = getProperties();
-  const filtered = properties.filter((p) => p.id !== propertyId);
-  localStorage.setItem(STORAGE_KEYS.PROPERTIES, JSON.stringify(filtered));
+function excluirPropriedade(id) {
+  var propriedades = getPropriedades();
+  var filtradas = [];
+  for (var i = 0; i < propriedades.length; i++) {
+    if (propriedades[i].id !== id) {
+      filtradas.push(propriedades[i]);
+    }
+  }
+  localStorage.setItem("ecorural_propriedades", JSON.stringify(filtradas));
 }
 
-function getPropertyById(propertyId) {
-  const properties = getProperties();
-  return properties.find((p) => p.id === propertyId);
+function getPropriedadePorId(id) {
+  var propriedades = getPropriedades();
+  for (var i = 0; i < propriedades.length; i++) {
+    if (propriedades[i].id === id) {
+      return propriedades[i];
+    }
+  }
+  return null;
 }
 
-function generateId() {
+function gerarId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-// ===== ESTADO DA APLICACAO =====
-let appState = {
-  currentScreen: "auth",
-  currentUser: null,
-  selectedPropertyId: null,
-  quizCurrentQuestion: 0,
-  quizAnswers: {},
-  quizPropertyId: null,
-};
-
-// ===== ELEMENTOS DO DOM =====
-const screens = {
-  auth: document.getElementById("auth-screen"),
-  property: document.getElementById("property-screen"),
-  quiz: document.getElementById("quiz-screen"),
-  dashboard: document.getElementById("dashboard-screen"),
-};
-
 // ===== NAVEGACAO =====
-function showScreen(screenName) {
-  Object.values(screens).forEach((screen) => screen.classList.add("hidden"));
-  screens[screenName].classList.remove("hidden");
-  appState.currentScreen = screenName;
+function mostrarTela(nomeTela) {
+  var telas = document.querySelectorAll(".tela");
+  for (var i = 0; i < telas.length; i++) {
+    telas[i].classList.add("oculto");
+  }
+  document.getElementById("tela-" + nomeTela).classList.remove("oculto");
 }
 
 // ===== AUTENTICACAO =====
-function initAuth() {
-  const loginForm = document.getElementById("login-form");
-  const registerForm = document.getElementById("register-form");
-  const showRegisterLink = document.getElementById("show-register");
-  const showLoginLink = document.getElementById("show-login");
-  const loginBtn = document.getElementById("login-btn");
-  const registerBtn = document.getElementById("register-btn");
+function inicializarAuth() {
+  var formLogin = document.getElementById("form-login");
+  var formCadastro = document.getElementById("form-cadastro");
+  var mostrarCadastro = document.getElementById("mostrar-cadastro");
+  var mostrarLogin = document.getElementById("mostrar-login");
 
-  showRegisterLink.addEventListener("click", (e) => {
+  mostrarCadastro.addEventListener("click", function(e) {
     e.preventDefault();
-    loginForm.classList.add("hidden");
-    registerForm.classList.remove("hidden");
+    formLogin.classList.add("oculto");
+    formCadastro.classList.remove("oculto");
   });
 
-  showLoginLink.addEventListener("click", (e) => {
+  mostrarLogin.addEventListener("click", function(e) {
     e.preventDefault();
-    registerForm.classList.add("hidden");
-    loginForm.classList.remove("hidden");
+    formCadastro.classList.add("oculto");
+    formLogin.classList.remove("oculto");
   });
 
-  loginBtn.addEventListener("click", handleLogin);
-  registerBtn.addEventListener("click", handleRegister);
-
-  // Enter key support
-  document.getElementById("login-password").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") handleLogin();
+  formLogin.addEventListener("submit", function(e) {
+    e.preventDefault();
+    fazerLogin();
   });
-  document.getElementById("register-confirm").addEventListener("keypress", (e) => {
-    if (e.key === "Enter") handleRegister();
+
+  formCadastro.addEventListener("submit", function(e) {
+    e.preventDefault();
+    fazerCadastro();
   });
 }
 
-function handleLogin() {
-  const email = document.getElementById("login-email").value.trim();
-  const password = document.getElementById("login-password").value;
-  const errorEl = document.getElementById("login-error");
+function fazerLogin() {
+  var email = document.getElementById("login-email").value.trim();
+  var senha = document.getElementById("login-senha").value;
+  var erro = document.getElementById("login-erro");
+  erro.textContent = "";
 
-  errorEl.textContent = "";
-
-  if (!email || !password) {
-    errorEl.textContent = "Preencha todos os campos.";
+  if (!email || !senha) {
+    erro.textContent = "Preencha todos os campos.";
     return;
   }
 
-  const user = findUserByEmail(email);
-  if (!user) {
-    errorEl.textContent = "Usuario nao encontrado.";
+  var usuario = buscarUsuarioPorEmail(email);
+  if (!usuario) {
+    erro.textContent = "Usuario nao encontrado.";
     return;
   }
 
-  if (user.password !== password) {
-    errorEl.textContent = "Senha incorreta.";
+  if (usuario.senha !== senha) {
+    erro.textContent = "Senha incorreta.";
     return;
   }
 
-  setCurrentUser(user);
-  appState.currentUser = user;
-  afterLogin();
+  setUsuarioAtual(usuario);
+  estado.usuarioAtual = usuario;
+  aposLogin();
 }
 
-function handleRegister() {
-  const name = document.getElementById("register-name").value.trim();
-  const email = document.getElementById("register-email").value.trim();
-  const password = document.getElementById("register-password").value;
-  const confirm = document.getElementById("register-confirm").value;
-  const errorEl = document.getElementById("register-error");
+function fazerCadastro() {
+  var nome = document.getElementById("cadastro-nome").value.trim();
+  var email = document.getElementById("cadastro-email").value.trim();
+  var senha = document.getElementById("cadastro-senha").value;
+  var confirmar = document.getElementById("cadastro-confirmar").value;
+  var erro = document.getElementById("cadastro-erro");
+  erro.textContent = "";
 
-  errorEl.textContent = "";
-
-  if (!name || !email || !password || !confirm) {
-    errorEl.textContent = "Preencha todos os campos.";
+  if (!nome || !email || !senha || !confirmar) {
+    erro.textContent = "Preencha todos os campos.";
     return;
   }
 
-  if (password.length < 6) {
-    errorEl.textContent = "A senha deve ter pelo menos 6 caracteres.";
+  if (senha.length < 6) {
+    erro.textContent = "A senha deve ter pelo menos 6 caracteres.";
     return;
   }
 
-  if (password !== confirm) {
-    errorEl.textContent = "As senhas nao conferem.";
+  if (senha !== confirmar) {
+    erro.textContent = "As senhas nao conferem.";
     return;
   }
 
-  if (findUserByEmail(email)) {
-    errorEl.textContent = "Este e-mail ja esta cadastrado.";
+  if (buscarUsuarioPorEmail(email)) {
+    erro.textContent = "Este e-mail ja esta cadastrado.";
     return;
   }
 
-  const newUser = {
-    id: generateId(),
+  var novoUsuario = {
+    id: gerarId(),
     email: email,
-    name: name,
-    password: password,
-    createdAt: new Date().toISOString(),
-    quizCompleted: false,
+    nome: nome,
+    senha: senha,
+    quizCompleto: false
   };
 
-  saveUser(newUser);
-  setCurrentUser(newUser);
-  appState.currentUser = newUser;
-  afterLogin();
+  salvarUsuario(novoUsuario);
+  setUsuarioAtual(novoUsuario);
+  estado.usuarioAtual = novoUsuario;
+  aposLogin();
 }
 
-function afterLogin() {
-  const user = appState.currentUser;
-  const properties = getProperties(user.id);
+function aposLogin() {
+  var usuario = estado.usuarioAtual;
+  var propriedades = getPropriedades(usuario.id);
 
-  if (properties.length === 0) {
-    showScreen("property");
-  } else if (!user.quizCompleted && properties.some((p) => !p.sustainabilityIndex)) {
-    const incompleteProperty = properties.find((p) => !p.sustainabilityIndex);
-    startQuiz(incompleteProperty.id);
+  if (propriedades.length === 0) {
+    mostrarTela("propriedade");
   } else {
-    showDashboard();
+    var semIndice = null;
+    for (var i = 0; i < propriedades.length; i++) {
+      if (!propriedades[i].indice) {
+        semIndice = propriedades[i];
+        break;
+      }
+    }
+    if (!usuario.quizCompleto && semIndice) {
+      iniciarQuiz(semIndice.id);
+    } else {
+      mostrarDashboard();
+    }
   }
 }
 
-function handleLogout() {
-  setCurrentUser(null);
-  appState.currentUser = null;
-  appState.selectedPropertyId = null;
+function fazerLogout() {
+  setUsuarioAtual(null);
+  estado.usuarioAtual = null;
+  estado.propriedadeSelecionada = null;
   document.getElementById("login-email").value = "";
-  document.getElementById("login-password").value = "";
-  document.getElementById("login-error").textContent = "";
-  showScreen("auth");
+  document.getElementById("login-senha").value = "";
+  mostrarTela("auth");
 }
 
 // ===== PROPRIEDADE =====
-function initProperty() {
-  const form = document.getElementById("property-form");
-  form.addEventListener("submit", handlePropertySubmit);
+function inicializarPropriedade() {
+  var form = document.getElementById("form-propriedade");
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    cadastrarPropriedade();
+  });
 }
 
-function handlePropertySubmit(e) {
-  e.preventDefault();
-  const errorEl = document.getElementById("property-error");
-  errorEl.textContent = "";
+function cadastrarPropriedade() {
+  var nome = document.getElementById("prop-nome").value.trim();
+  var local = document.getElementById("prop-local").value.trim();
+  var tamanho = document.getElementById("prop-tamanho").value;
+  var unidade = document.getElementById("prop-unidade").value;
+  var atividade = document.getElementById("prop-atividade").value;
+  var erro = document.getElementById("prop-erro");
+  erro.textContent = "";
 
-  const name = document.getElementById("property-name").value.trim();
-  const location = document.getElementById("property-location").value.trim();
-  const size = parseFloat(document.getElementById("property-size").value);
-  const unit = document.getElementById("property-unit").value;
-  const activity = document.getElementById("property-activity").value;
-
-  if (!name || !location || !size || !activity) {
-    errorEl.textContent = "Preencha todos os campos.";
+  if (!nome || !local || !tamanho || !atividade) {
+    erro.textContent = "Preencha todos os campos.";
     return;
   }
 
-  const newProperty = {
-    id: generateId(),
-    userId: appState.currentUser.id,
-    name: name,
-    location: location,
-    size: size,
-    sizeUnit: unit,
-    mainActivity: activity,
-    createdAt: new Date().toISOString(),
+  var novaPropriedade = {
+    id: gerarId(),
+    userId: estado.usuarioAtual.id,
+    nome: nome,
+    localizacao: local,
+    tamanho: parseInt(tamanho),
+    unidade: unidade,
+    atividade: atividade,
+    indice: null,
+    pontuacaoCategorias: null,
+    respostasQuiz: null
   };
 
-  saveProperty(newProperty);
-  clearPropertyForm();
-  startQuiz(newProperty.id);
+  salvarPropriedade(novaPropriedade);
+  limparFormPropriedade();
+  iniciarQuiz(novaPropriedade.id);
 }
 
-function clearPropertyForm() {
-  document.getElementById("property-name").value = "";
-  document.getElementById("property-location").value = "";
-  document.getElementById("property-size").value = "";
-  document.getElementById("property-activity").value = "";
-  document.getElementById("property-error").textContent = "";
+function limparFormPropriedade() {
+  document.getElementById("prop-nome").value = "";
+  document.getElementById("prop-local").value = "";
+  document.getElementById("prop-tamanho").value = "";
+  document.getElementById("prop-atividade").value = "";
+  document.getElementById("prop-erro").textContent = "";
 }
 
 // ===== QUIZ =====
-function initQuiz() {
-  document.getElementById("quiz-prev").addEventListener("click", quizPrev);
-  document.getElementById("quiz-next").addEventListener("click", quizNext);
-}
-
-function startQuiz(propertyId) {
-  appState.quizPropertyId = propertyId;
-  appState.quizCurrentQuestion = 0;
-  appState.quizAnswers = {};
-  showScreen("quiz");
-  renderQuizQuestion();
-}
-
-function renderQuizQuestion() {
-  const question = quizQuestions[appState.quizCurrentQuestion];
-  const total = quizQuestions.length;
-  const current = appState.quizCurrentQuestion + 1;
-
-  // Progress
-  document.getElementById("progress-fill").style.width = `${(current / total) * 100}%`;
-  document.getElementById("progress-text").textContent = `Pergunta ${current} de ${total}`;
-
-  // Category
-  document.getElementById("quiz-category").textContent = categoryLabels[question.category];
-
-  // Question
-  document.getElementById("quiz-question").textContent = question.question;
-
-  // Options
-  const optionsContainer = document.getElementById("quiz-options");
-  optionsContainer.innerHTML = "";
-
-  question.options.forEach((option, index) => {
-    const optionEl = document.createElement("div");
-    optionEl.className = "quiz-option";
-    if (appState.quizAnswers[question.id] === option.value) {
-      optionEl.classList.add("selected");
+function inicializarQuiz() {
+  document.getElementById("quiz-anterior").addEventListener("click", function() {
+    if (estado.quizPerguntaAtual > 0) {
+      estado.quizPerguntaAtual--;
+      renderizarQuiz();
     }
-    optionEl.innerHTML = `<span class="option-label">${option.label}</span>`;
-    optionEl.addEventListener("click", () => selectOption(question.id, option.value));
-    optionsContainer.appendChild(optionEl);
   });
 
-  // Buttons
-  document.getElementById("quiz-prev").disabled = appState.quizCurrentQuestion === 0;
-  const nextBtn = document.getElementById("quiz-next");
-  nextBtn.disabled = appState.quizAnswers[question.id] === undefined;
-  nextBtn.textContent = appState.quizCurrentQuestion === total - 1 ? "Finalizar" : "Proxima";
+  document.getElementById("quiz-proximo").addEventListener("click", function() {
+    if (estado.quizPerguntaAtual < perguntas.length - 1) {
+      estado.quizPerguntaAtual++;
+      renderizarQuiz();
+    } else {
+      finalizarQuiz();
+    }
+  });
 }
 
-function selectOption(questionId, value) {
-  appState.quizAnswers[questionId] = value;
-  renderQuizQuestion();
+function iniciarQuiz(propriedadeId) {
+  estado.quizPropriedadeId = propriedadeId;
+  estado.quizPerguntaAtual = 0;
+  estado.quizRespostas = {};
+  mostrarTela("quiz");
+  renderizarQuiz();
 }
 
-function quizPrev() {
-  if (appState.quizCurrentQuestion > 0) {
-    appState.quizCurrentQuestion--;
-    renderQuizQuestion();
-  }
-}
+function renderizarQuiz() {
+  var pergunta = perguntas[estado.quizPerguntaAtual];
+  var total = perguntas.length;
+  var atual = estado.quizPerguntaAtual + 1;
 
-function quizNext() {
-  const total = quizQuestions.length;
-  if (appState.quizCurrentQuestion < total - 1) {
-    appState.quizCurrentQuestion++;
-    renderQuizQuestion();
-  } else {
-    finishQuiz();
-  }
-}
+  // Progresso
+  var porcentagem = (atual / total) * 100;
+  document.getElementById("progresso-preenchido").style.width = porcentagem + "%";
+  document.getElementById("progresso-texto").textContent = "Pergunta " + atual + " de " + total;
 
-function finishQuiz() {
-  const results = calculateQuizResults();
+  // Categoria
+  document.getElementById("quiz-categoria").textContent = nomesCategorias[pergunta.categoria];
 
-  // Save to property
-  const property = getPropertyById(appState.quizPropertyId);
-  if (property) {
-    property.sustainabilityIndex = results.percentageScore;
-    property.quizAnswers = results.categoryScores;
-    saveProperty(property);
-  }
+  // Pergunta
+  document.getElementById("quiz-pergunta").textContent = pergunta.pergunta;
 
-  // Mark user as quiz completed
-  updateCurrentUser({ quizCompleted: true });
-  appState.currentUser.quizCompleted = true;
-
-  showDashboard();
-}
-
-function calculateQuizResults() {
-  const categoryScores = {};
-  const categories = ["agua", "solo", "biodiversidade", "energia", "praticas"];
-
-  categories.forEach((cat) => {
-    const questions = quizQuestions.filter((q) => q.category === cat);
-    let score = 0;
-    let maxScore = 0;
-
-    questions.forEach((q) => {
-      const answer = appState.quizAnswers[q.id];
-      if (answer !== undefined) {
-        score += answer;
-      }
-      maxScore += 3; // Max value per question
+  // Opcoes
+  var container = document.getElementById("quiz-opcoes");
+  container.innerHTML = "";
+  for (var i = 0; i < pergunta.opcoes.length; i++) {
+    var opcao = pergunta.opcoes[i];
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "opcao";
+    btn.textContent = opcao.texto;
+    btn.setAttribute("data-valor", opcao.valor);
+    if (estado.quizRespostas[pergunta.id] === opcao.valor) {
+      btn.classList.add("selecionada");
+    }
+    btn.addEventListener("click", function() {
+      selecionarOpcao(this);
     });
+    container.appendChild(btn);
+  }
 
-    categoryScores[cat] = {
-      score: score,
-      maxScore: maxScore,
-      percentage: maxScore > 0 ? Math.round((score / maxScore) * 100) : 0,
-    };
-  });
+  // Botoes
+  document.getElementById("quiz-anterior").disabled = estado.quizPerguntaAtual === 0;
+  var btnProximo = document.getElementById("quiz-proximo");
+  btnProximo.disabled = estado.quizRespostas[pergunta.id] === undefined;
+  btnProximo.textContent = estado.quizPerguntaAtual === total - 1 ? "Finalizar" : "Proxima";
+}
 
-  let totalScore = 0;
-  let totalMaxScore = 0;
-  Object.values(categoryScores).forEach((cat) => {
-    totalScore += cat.score;
-    totalMaxScore += cat.maxScore;
-  });
+function selecionarOpcao(btn) {
+  var pergunta = perguntas[estado.quizPerguntaAtual];
+  var valor = parseInt(btn.getAttribute("data-valor"));
+  estado.quizRespostas[pergunta.id] = valor;
 
-  return {
-    totalScore: totalScore,
-    maxScore: totalMaxScore,
-    percentageScore: Math.round((totalScore / totalMaxScore) * 100),
-    categoryScores: categoryScores,
-  };
+  var opcoes = document.querySelectorAll("#quiz-opcoes .opcao");
+  for (var i = 0; i < opcoes.length; i++) {
+    opcoes[i].classList.remove("selecionada");
+  }
+  btn.classList.add("selecionada");
+
+  document.getElementById("quiz-proximo").disabled = false;
+}
+
+function finalizarQuiz() {
+  var propriedade = getPropriedadePorId(estado.quizPropriedadeId);
+  if (!propriedade) return;
+
+  // Calcular pontuacao por categoria
+  var categorias = { agua: [], solo: [], biodiversidade: [], energia: [], praticas: [] };
+  for (var i = 0; i < perguntas.length; i++) {
+    var p = perguntas[i];
+    if (estado.quizRespostas[p.id] !== undefined) {
+      categorias[p.categoria].push(estado.quizRespostas[p.id]);
+    }
+  }
+
+  var pontuacaoCategorias = {};
+  var totalPontos = 0;
+  var totalMax = 0;
+
+  for (var cat in categorias) {
+    var respostas = categorias[cat];
+    var soma = 0;
+    for (var j = 0; j < respostas.length; j++) {
+      soma += respostas[j];
+    }
+    var max = respostas.length * 3;
+    var porcentagem = max > 0 ? Math.round((soma / max) * 100) : 0;
+    pontuacaoCategorias[cat] = porcentagem;
+    totalPontos += soma;
+    totalMax += max;
+  }
+
+  var indice = totalMax > 0 ? Math.round((totalPontos / totalMax) * 100) : 0;
+
+  propriedade.indice = indice;
+  propriedade.pontuacaoCategorias = pontuacaoCategorias;
+  propriedade.respostasQuiz = estado.quizRespostas;
+  salvarPropriedade(propriedade);
+
+  // Marcar quiz completo
+  var usuario = estado.usuarioAtual;
+  usuario.quizCompleto = true;
+  salvarUsuario(usuario);
+  setUsuarioAtual(usuario);
+  estado.usuarioAtual = usuario;
+
+  mostrarDashboard();
 }
 
 // ===== DASHBOARD =====
-function initDashboard() {
-  document.getElementById("logout-btn").addEventListener("click", handleLogout);
-  document.getElementById("add-property-btn").addEventListener("click", () => {
-    clearPropertyForm();
-    showScreen("property");
+function inicializarDashboard() {
+  document.getElementById("btn-sair").addEventListener("click", fazerLogout);
+  document.getElementById("btn-nova-prop").addEventListener("click", function() {
+    mostrarTela("propriedade");
   });
-  document.getElementById("back-to-list").addEventListener("click", showPropertiesList);
-  document.getElementById("redo-quiz-btn").addEventListener("click", () => {
-    if (appState.selectedPropertyId) {
-      startQuiz(appState.selectedPropertyId);
+  document.getElementById("btn-voltar").addEventListener("click", function() {
+    document.getElementById("secao-lista").classList.remove("oculto");
+    document.getElementById("secao-detalhes").classList.add("oculto");
+    estado.propriedadeSelecionada = null;
+  });
+  document.getElementById("btn-refazer-quiz").addEventListener("click", function() {
+    if (estado.propriedadeSelecionada) {
+      iniciarQuiz(estado.propriedadeSelecionada);
     }
   });
-  document.getElementById("delete-property-btn").addEventListener("click", handleDeleteProperty);
-
-  // Tabs
-  document.querySelectorAll(".tab-btn").forEach((btn) => {
-    btn.addEventListener("click", () => switchTab(btn.dataset.tab));
+  document.getElementById("btn-excluir").addEventListener("click", function() {
+    if (estado.propriedadeSelecionada && confirm("Tem certeza que deseja excluir esta propriedade?")) {
+      excluirPropriedade(estado.propriedadeSelecionada);
+      estado.propriedadeSelecionada = null;
+      mostrarDashboard();
+    }
   });
+
+  // Abas
+  var abaBtns = document.querySelectorAll(".aba-btn");
+  for (var i = 0; i < abaBtns.length; i++) {
+    abaBtns[i].addEventListener("click", function() {
+      var aba = this.getAttribute("data-aba");
+      trocarAba(aba);
+    });
+  }
 }
 
-function showDashboard() {
-  showScreen("dashboard");
-  document.getElementById("user-name").textContent = appState.currentUser.name;
-  renderPropertiesList();
-  showPropertiesList();
+function trocarAba(aba) {
+  var btns = document.querySelectorAll(".aba-btn");
+  var conteudos = document.querySelectorAll(".aba-conteudo");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.remove("ativa");
+    conteudos[i].classList.remove("ativa");
+  }
+  document.querySelector('.aba-btn[data-aba="' + aba + '"]').classList.add("ativa");
+  document.getElementById("aba-" + aba).classList.add("ativa");
 }
 
-function showPropertiesList() {
-  document.getElementById("properties-list").parentElement.classList.remove("hidden");
-  document.getElementById("property-details").classList.add("hidden");
-  appState.selectedPropertyId = null;
+function mostrarDashboard() {
+  mostrarTela("dashboard");
+  document.getElementById("nome-usuario").textContent = estado.usuarioAtual.nome;
+
+  var propriedades = getPropriedades(estado.usuarioAtual.id);
+  renderizarListaPropriedades(propriedades);
+
+  document.getElementById("secao-lista").classList.remove("oculto");
+  document.getElementById("secao-detalhes").classList.add("oculto");
 }
 
-function renderPropertiesList() {
-  const container = document.getElementById("properties-list");
-  const properties = getProperties(appState.currentUser.id);
+function renderizarListaPropriedades(propriedades) {
+  var container = document.getElementById("lista-propriedades");
+  container.innerHTML = "";
 
-  if (properties.length === 0) {
-    container.innerHTML = '<p class="empty-message">Nenhuma propriedade cadastrada ainda.</p>';
+  if (propriedades.length === 0) {
+    container.innerHTML = '<p style="color: var(--texto-claro);">Nenhuma propriedade cadastrada ainda.</p>';
     return;
   }
 
-  container.innerHTML = properties
-    .map((prop) => {
-      const indexClass = getIndexClass(prop.sustainabilityIndex);
-      const indexLabel = prop.sustainabilityIndex !== undefined ? `${prop.sustainabilityIndex} pontos` : "Quiz pendente";
+  for (var i = 0; i < propriedades.length; i++) {
+    var prop = propriedades[i];
+    var card = document.createElement("div");
+    card.className = "card-propriedade";
+    card.setAttribute("data-id", prop.id);
 
-      return `
-      <div class="property-card" data-id="${prop.id}">
-        <h3>${prop.name}</h3>
-        <p class="property-info">${prop.location} - ${prop.size} ${prop.sizeUnit}</p>
-        <div class="property-index">
-          <span class="index-badge ${indexClass}">${indexLabel}</span>
-        </div>
-      </div>
-    `;
-    })
-    .join("");
+    var badgeClass = "badge-pendente";
+    var badgeText = "Pendente";
+    if (prop.indice !== null) {
+      if (prop.indice >= 75) { badgeClass = "badge-otimo"; badgeText = "Otimo - " + prop.indice + " pts"; }
+      else if (prop.indice >= 50) { badgeClass = "badge-bom"; badgeText = "Bom - " + prop.indice + " pts"; }
+      else if (prop.indice >= 25) { badgeClass = "badge-regular"; badgeText = "Regular - " + prop.indice + " pts"; }
+      else { badgeClass = "badge-ruim"; badgeText = "Ruim - " + prop.indice + " pts"; }
+    }
 
-  // Add click listeners
-  container.querySelectorAll(".property-card").forEach((card) => {
-    card.addEventListener("click", () => showPropertyDetails(card.dataset.id));
-  });
+    card.innerHTML = '<h3>' + prop.nome + '</h3>' +
+      '<p class="info">' + prop.localizacao + ' - ' + prop.tamanho + ' ' + prop.unidade + '</p>' +
+      '<span class="badge ' + badgeClass + '">' + badgeText + '</span>';
+
+    card.addEventListener("click", function() {
+      var id = this.getAttribute("data-id");
+      mostrarDetalhes(id);
+    });
+
+    container.appendChild(card);
+  }
 }
 
-function getIndexClass(index) {
-  if (index === undefined) return "pending";
-  if (index >= 75) return "excellent";
-  if (index >= 50) return "good";
-  if (index >= 25) return "regular";
-  return "poor";
-}
+function mostrarDetalhes(id) {
+  var prop = getPropriedadePorId(id);
+  if (!prop) return;
 
-function getIndexStatus(index) {
-  if (index >= 75) return "Excelente! Sua propriedade e um exemplo de sustentabilidade.";
-  if (index >= 50) return "Bom! Ha espaco para melhorias.";
-  if (index >= 25) return "Regular. Recomendamos atencao as praticas sustentaveis.";
-  return "Critico. Acoes urgentes sao necessarias.";
-}
+  estado.propriedadeSelecionada = id;
+  document.getElementById("nome-propriedade").textContent = prop.nome;
 
-function showPropertyDetails(propertyId) {
-  const property = getPropertyById(propertyId);
-  if (!property) return;
+  document.getElementById("secao-lista").classList.add("oculto");
+  document.getElementById("secao-detalhes").classList.remove("oculto");
 
-  appState.selectedPropertyId = propertyId;
-
-  document.getElementById("properties-list").parentElement.classList.add("hidden");
-  document.getElementById("property-details").classList.remove("hidden");
-
-  document.getElementById("detail-property-name").textContent = property.name;
-
-  if (property.sustainabilityIndex !== undefined) {
-    renderGauge(property.sustainabilityIndex);
-    document.getElementById("sustainability-status").textContent = getIndexStatus(property.sustainabilityIndex);
-    renderCategories(property.quizAnswers);
-    renderRecommendations(property.quizAnswers);
-    renderSimulation(property.sustainabilityIndex);
+  if (prop.indice !== null) {
+    renderizarGauge(prop.indice);
+    renderizarCategorias(prop.pontuacaoCategorias);
+    renderizarRecomendacoes(prop.pontuacaoCategorias);
+    renderizarSimulacao(prop.indice, prop.pontuacaoCategorias);
   } else {
-    document.getElementById("gauge-text").textContent = "?";
-    document.getElementById("sustainability-status").textContent = "Complete o quiz para ver seu indice.";
-    document.getElementById("categories-list").innerHTML = '<p>Complete o quiz para ver as categorias.</p>';
-    document.getElementById("recommendations-list").innerHTML = '<p>Complete o quiz para ver as recomendacoes.</p>';
-    document.getElementById("simulation-cards").innerHTML = '<p>Complete o quiz para ver a simulacao.</p>';
+    document.getElementById("gauge-numero").textContent = "?";
+    document.getElementById("status-sustentabilidade").textContent = "Quiz nao realizado";
   }
 }
 
-function renderGauge(value) {
-  const gaugeText = document.getElementById("gauge-text");
-  const gaugeFill = document.getElementById("gauge-fill");
+function renderizarGauge(indice) {
+  var offset = 251 - (indice / 100) * 251;
+  document.getElementById("gauge-valor").setAttribute("stroke-dashoffset", offset);
+  document.getElementById("gauge-numero").textContent = indice;
 
-  gaugeText.textContent = value;
+  var status = "Calculando...";
+  if (indice >= 75) status = "Excelente! Propriedade sustentavel.";
+  else if (indice >= 50) status = "Bom! Ha espaco para melhorias.";
+  else if (indice >= 25) status = "Regular. Precisa de atencao.";
+  else status = "Critico. Acoes urgentes necessarias.";
 
-  // Calculate stroke-dashoffset (251 is full arc length)
-  const offset = 251 - (value / 100) * 251;
-  gaugeFill.style.strokeDashoffset = offset;
+  document.getElementById("status-sustentabilidade").textContent = status;
 }
 
-function renderCategories(categoryScores) {
-  const container = document.getElementById("categories-list");
+function renderizarCategorias(pontuacoes) {
+  var container = document.getElementById("lista-categorias");
+  container.innerHTML = "";
 
-  if (!categoryScores) {
-    container.innerHTML = '<p>Dados nao disponiveis.</p>';
+  for (var cat in pontuacoes) {
+    var pontos = pontuacoes[cat];
+    var classe = "ruim";
+    if (pontos >= 75) classe = "otimo";
+    else if (pontos >= 50) classe = "bom";
+    else if (pontos >= 25) classe = "regular";
+
+    var item = document.createElement("div");
+    item.className = "item-categoria";
+    item.innerHTML = '<div class="icone-categoria">' + iconesCategorias[cat] + '</div>' +
+      '<div class="info-categoria">' +
+      '<div class="nome">' + nomesCategorias[cat] + '</div>' +
+      '<div class="barra-categoria"><div class="barra-valor ' + classe + '" style="width:' + pontos + '%"></div></div>' +
+      '</div>' +
+      '<span class="pontuacao">' + pontos + '%</span>';
+
+    container.appendChild(item);
+  }
+}
+
+function renderizarRecomendacoes(pontuacoes) {
+  var container = document.getElementById("lista-recomendacoes");
+  container.innerHTML = "";
+
+  // Encontrar categorias mais fracas
+  var catsFracas = [];
+  for (var cat in pontuacoes) {
+    if (pontuacoes[cat] < 75) {
+      catsFracas.push(cat);
+    }
+  }
+
+  if (catsFracas.length === 0) {
+    container.innerHTML = '<p style="color: var(--texto-claro);">Parabens! Sua propriedade esta em otimo nivel de sustentabilidade.</p>';
     return;
   }
 
-  const categories = ["agua", "solo", "biodiversidade", "energia", "praticas"];
-
-  container.innerHTML = categories
-    .map((cat) => {
-      const data = categoryScores[cat] || { percentage: 0 };
-      const percentage = data.percentage || 0;
-      const barClass = getIndexClass(percentage);
-
-      return `
-      <div class="category-item">
-        <div class="category-icon">${categoryIcons[cat]}</div>
-        <div class="category-info">
-          <div class="category-name">${categoryLabels[cat]}</div>
-          <div class="category-bar">
-            <div class="category-bar-fill ${barClass}" style="width: ${percentage}%"></div>
-          </div>
-        </div>
-        <span class="category-score">${percentage}%</span>
-      </div>
-    `;
-    })
-    .join("");
-}
-
-function renderRecommendations(categoryScores) {
-  const container = document.getElementById("recommendations-list");
-
-  if (!categoryScores) {
-    container.innerHTML = '<p>Complete o quiz para ver recomendacoes personalizadas.</p>';
-    return;
+  var recsExibidas = [];
+  for (var i = 0; i < recomendacoes.length; i++) {
+    var rec = recomendacoes[i];
+    if (catsFracas.indexOf(rec.categoria) >= 0 && recsExibidas.length < 5) {
+      recsExibidas.push(rec);
+    }
   }
 
-  // Find weakest categories
-  const categories = Object.entries(categoryScores)
-    .map(([cat, data]) => ({ category: cat, percentage: data.percentage || 0 }))
-    .sort((a, b) => a.percentage - b.percentage);
-
-  const weakCategories = categories.slice(0, 3).map((c) => c.category);
-
-  // Get recommendations for weak categories
-  const relevantRecs = recommendations.filter((r) => weakCategories.includes(r.category)).slice(0, 6);
-
-  if (relevantRecs.length === 0) {
-    container.innerHTML = '<p>Parabens! Sua propriedade esta bem em todas as categorias.</p>';
-    return;
+  for (var j = 0; j < recsExibidas.length; j++) {
+    var r = recsExibidas[j];
+    var card = document.createElement("div");
+    card.className = "card-recomendacao";
+    card.innerHTML = '<h4>' + r.titulo + ' <span class="impacto impacto-' + r.impacto + '">' + r.impacto + '</span></h4>' +
+      '<p>' + r.descricao + '</p>' +
+      '<div class="meta-recomendacao">' +
+      '<span>Custo: ' + r.custo + '</span>' +
+      '<span>Prazo: ' + r.prazo + '</span>' +
+      '</div>';
+    container.appendChild(card);
   }
-
-  container.innerHTML = relevantRecs
-    .map(
-      (rec) => `
-    <div class="recommendation-card">
-      <div class="recommendation-header">
-        <h4>${rec.title}</h4>
-        <span class="impact-badge ${rec.impact}">${rec.impact}</span>
-      </div>
-      <p>${rec.description}</p>
-      <div class="recommendation-meta">
-        <span>Custo: ${rec.estimatedCost}</span>
-        <span>Prazo: ${rec.timeframe}</span>
-      </div>
-      <div class="recommendation-benefits">
-        <h5>Beneficios:</h5>
-        <ul>
-          ${rec.benefits.map((b) => `<li>${b}</li>`).join("")}
-        </ul>
-      </div>
-    </div>
-  `
-    )
-    .join("");
 }
 
-function renderSimulation(currentIndex) {
-  const container = document.getElementById("simulation-cards");
+function renderizarSimulacao(indiceAtual, pontuacoes) {
+  var container = document.getElementById("cards-simulacao");
+  container.innerHTML = "";
 
-  const projections = [
-    {
-      year: 1,
-      projected: Math.min(100, currentIndex + 10),
-      improvements: ["Captacao de agua da chuva", "Adubacao verde implementada"],
-      benefits: ["Reducao de 15% nos custos de agua", "Melhoria na qualidade do solo"],
-    },
-    {
-      year: 3,
-      projected: Math.min(100, currentIndex + 25),
-      improvements: ["Sistema fotovoltaico instalado", "Corredores ecologicos estabelecidos", "Plantio direto consolidado"],
-      benefits: ["Independencia energetica parcial", "Aumento de 20% na produtividade", "Certificacao ambiental possivel"],
-    },
-    {
-      year: 5,
-      projected: Math.min(100, currentIndex + 40),
-      improvements: ["ILPF consolidado", "Certificacao organica obtida", "Biodigestor operacional"],
-      benefits: ["Precos premium nos produtos", "Propriedade modelo na regiao", "Sequestro significativo de carbono"],
-    },
+  var periodos = [
+    { nome: "1 Ano", melhoria: 10, beneficios: ["Reducao de custos operacionais", "Melhoria na qualidade da agua"] },
+    { nome: "3 Anos", melhoria: 25, beneficios: ["Aumento da biodiversidade", "Solo mais fertil", "Economia de energia"] },
+    { nome: "5 Anos", melhoria: 40, beneficios: ["Propriedade modelo", "Certificacoes sustentaveis", "Valorizacao do imovel"] }
   ];
 
-  container.innerHTML = projections
-    .map(
-      (proj) => `
-    <div class="simulation-card">
-      <h4>Em ${proj.year} ano${proj.year > 1 ? "s" : ""}</h4>
-      <div class="simulation-indices">
-        <div class="index-current">
-          <span>Atual</span>
-          <strong>${currentIndex}</strong>
-        </div>
-        <div class="simulation-arrow">→</div>
-        <div class="index-projected">
-          <span>Projetado</span>
-          <strong>${proj.projected}</strong>
-        </div>
-      </div>
-      <div class="simulation-improvements">
-        <h5>Melhorias implementadas:</h5>
-        <ul>
-          ${proj.improvements.map((i) => `<li>${i}</li>`).join("")}
-        </ul>
-      </div>
-      <div class="simulation-benefits">
-        <h5>Resultados esperados:</h5>
-        <ul>
-          ${proj.benefits.map((b) => `<li>${b}</li>`).join("")}
-        </ul>
-      </div>
-    </div>
-  `
-    )
-    .join("");
-}
+  for (var i = 0; i < periodos.length; i++) {
+    var p = periodos[i];
+    var projetado = Math.min(100, indiceAtual + p.melhoria);
 
-function switchTab(tabName) {
-  document.querySelectorAll(".tab-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.tab === tabName);
-  });
+    var card = document.createElement("div");
+    card.className = "card-simulacao";
+    card.innerHTML = '<h4>Em ' + p.nome + '</h4>' +
+      '<div class="indices-simulacao">' +
+      '<div class="indice-atual"><span>Atual</span><strong>' + indiceAtual + '</strong></div>' +
+      '<div class="seta">→</div>' +
+      '<div class="indice-projetado"><span>Projetado</span><strong>' + projetado + '</strong></div>' +
+      '</div>' +
+      '<div class="beneficios-simulacao">' +
+      '<h5>Beneficios esperados:</h5>' +
+      '<ul>' + p.beneficios.map(function(b) { return '<li>' + b + '</li>'; }).join('') + '</ul>' +
+      '</div>';
 
-  document.querySelectorAll(".tab-content").forEach((content) => {
-    content.classList.toggle("active", content.id === `tab-${tabName}`);
-    content.classList.toggle("hidden", content.id !== `tab-${tabName}`);
-  });
-}
-
-function handleDeleteProperty() {
-  if (!appState.selectedPropertyId) return;
-
-  const confirmed = confirm("Tem certeza que deseja excluir esta propriedade? Esta acao nao pode ser desfeita.");
-  if (!confirmed) return;
-
-  deletePropertyById(appState.selectedPropertyId);
-  appState.selectedPropertyId = null;
-
-  const properties = getProperties(appState.currentUser.id);
-  if (properties.length === 0) {
-    showScreen("property");
-  } else {
-    renderPropertiesList();
-    showPropertiesList();
+    container.appendChild(card);
   }
 }
 
 // ===== INICIALIZACAO =====
-function init() {
-  initAuth();
-  initProperty();
-  initQuiz();
-  initDashboard();
+document.addEventListener("DOMContentLoaded", function() {
+  inicializarAuth();
+  inicializarPropriedade();
+  inicializarQuiz();
+  inicializarDashboard();
 
-  // Check for existing session
-  const savedUser = getCurrentUser();
-  if (savedUser) {
-    appState.currentUser = savedUser;
-    afterLogin();
+  // Verificar usuario logado
+  var usuario = getUsuarioAtual();
+  if (usuario) {
+    estado.usuarioAtual = usuario;
+    aposLogin();
   } else {
-    showScreen("auth");
+    mostrarTela("auth");
   }
-}
-
-// Start app when DOM is ready
-document.addEventListener("DOMContentLoaded", init);
+});
